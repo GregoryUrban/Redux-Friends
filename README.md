@@ -26,7 +26,7 @@ Topics:
   * **[DELETE]** to `/api/friends/123`: removes the friend using the `id` passed as part of the URL (123 in example).
 
 ## Initialize Project
-
+**Lets gooooo!**
 * Run `yarn` or `npm i` inside the root directory of this project to install dependencies.
 * Run `yarn start` or `npm start` to start the API server.
 * Run `create-react-app friends` in a separate terminal window in the root directory of the project to create your starter application.
