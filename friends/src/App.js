@@ -4,6 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
 import Login from "./components/Login"
+import PrivateRoute from "./components/PrivateRoute"
+
 
 class App extends Component {
   render() {
@@ -20,7 +22,8 @@ class App extends Component {
           </li>
         </ul>
         <Route path="/login" component={Login} />
-        <PrivateRoute exact path="/protected" component={GasPrices} />
+        <PrivateRoute exact path="/protected" component/>
+        {/* <PrivateRoute exact path="/protected" component={GasPrices} /> */}
       </div>
     </Router>
 
