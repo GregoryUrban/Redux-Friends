@@ -22,7 +22,8 @@ export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS"
 export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE"
 export const getData = () => dispatch => {
   dispatch({ type: FETCH_DATA_START })
-  axiosWithAuth()
+  // axiosWithAuth()
+  axios
     .get("http://localhost:5000/api/data", {
       headers: { Authorization: localStorage.getItem("token") } //added
     })

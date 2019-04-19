@@ -1,17 +1,17 @@
 //reducer
 import {
-    // LOGIN_START,
-    // LOGIN_SUCCESS,
-    // LOGIN_FAILURE,
+    LOGIN_START,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
     FETCH_DATA_START,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAILURE,
-    ADD_FRIEND, 
-    ADD_FAILURE, 
-    DELETE_FRIEND, 
-    DELETE_FAILURE, 
-    UPDATE_SUCCESS, 
-    UPDATE_FAILURE 
+    // ADD_FRIEND, 
+    // ADD_FAILURE, 
+    // DELETE_FRIEND, 
+    // DELETE_FAILURE, 
+    // UPDATE_SUCCESS, 
+    // UPDATE_FAILURE 
   } from '../actions';
   
   const initialState = {
@@ -24,29 +24,28 @@ import {
     // deletingFriend: false,
     // savingFriends: false,
   };
-  
   export const reducer = (state = initialState, action) => {
     switch(action.type){
-        case UPDATING:
+        case FETCH_DATA_START:
             return { ...state, updating: true, error: state.error };
-        case FETCH_SUCCESS:
+        case FETCH_DATA_SUCCESS:
             return { ...state, friends: action.payload, updating: false, error: null };
-        case FETCH_FAILURE:
+        case FETCH_DATA_FAILURE:
             return { ...state, updating: false, error: action.payload };
-        case ADD_FRIEND:
-            return { ...state, friends: action.payload, updating: false, error: null };
-        case ADD_FAILURE:
-            return { ...state, updating: false, error: action.payload };
-        case DELETE_FRIEND:
-            return { ...state, friends: action.payload, updating: false, error: null };
-        case DELETE_FAILURE:
-            return { ...state, updating: false, error: action.payload };
-        case UPDATE_SUCCESS:
-            return { ...state, friends: action.payload, updating: false, error: null };
-        case UPDATE_FAILURE:
-            return { ...state, updating: false, error: action.payload };
-        default:
-            return state;
+        // case ADD_FRIEND:
+        //     return { ...state, friends: action.payload, updating: false, error: null };
+        // case ADD_FAILURE:
+        //     return { ...state, updating: false, error: action.payload };
+        // case DELETE_FRIEND:
+        //     return { ...state, friends: action.payload, updating: false, error: null };
+        // case DELETE_FAILURE:
+        //     return { ...state, updating: false, error: action.payload };
+        // case UPDATE_SUCCESS:
+        //     return { ...state, friends: action.payload, updating: false, error: null };
+        // case UPDATE_FAILURE:
+        //     return { ...state, updating: false, error: action.payload };
+        // default:
+        //     return state;
     }
 }
   
@@ -100,4 +99,4 @@ import {
 //     }
 //   };
 
-// export default reducer;
+export default reducer;

@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import Loader from "react-loader-spinner"
+// import Loader from "react-loader-spinner"
 
 import { login } from "../actions"
 
@@ -46,7 +46,8 @@ class Login extends React.Component {
           />
           <button>
             {this.props.loggingIn ? (
-              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+              // <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+              'Keep Typing'
             ) : (
               "Log in"
             )}

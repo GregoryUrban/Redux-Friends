@@ -1,6 +1,6 @@
-import express from 'express';
-import { json } from 'body-parser';
-import cors from 'cors';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const port = 5000;
 const app = express();
 const token =
@@ -47,7 +47,7 @@ let friends = [
   }
 ];
 
-app.use(json());
+app.use(bodyParser.json());
 
 app.use(cors());
 
