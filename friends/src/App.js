@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import FriendList from './components/FriendList'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
+// import { getData } from './actions';
 import Login from "./components/Login"
 import PrivateRoute from "./components/PrivateRoute"
 
 
 class App extends Component {
+  // componentDidMount() {
+  //   this.props.getData();
+  // }
   render() {
     return (
 
@@ -22,12 +26,25 @@ class App extends Component {
           </li>
         </ul>
         <Route path="/login" component={Login} />
-        <PrivateRoute exact path="/protected" component/>
+        <PrivateRoute exact path="/protected" component={FriendList}/>
         {/* <PrivateRoute exact path="/protected" component={GasPrices} /> */}
       </div>
     </Router>
 
     );
+
+    // return (
+    //   <div>
+    //     <div>
+    //   <Route path = "/login" component = {Login} />
+
+    //     </div>
+    //   <div>
+    //     <PrivateRoute path = "/friendlist" component = {FriendList} />
+
+    //   </div>
+    //   </div>
+    // );
   }
 }
 

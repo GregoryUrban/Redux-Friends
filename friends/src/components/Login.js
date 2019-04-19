@@ -2,9 +2,9 @@ import React from "react"
 import { connect } from "react-redux"
 // import Loader from "react-loader-spinner"
 
-import { login } from "../actions"
+import { loginAccess, getData } from "../actions"
 
-class Login extends React.Component {
+class LoginPage extends React.Component {
   state = {
     credentials: {
       username: "",
@@ -13,6 +13,7 @@ class Login extends React.Component {
   }
 
   handleChange = e => {
+    e.preventDefault()
     this.setState({
       credentials: {
         ...this.state.credentials,
@@ -21,17 +22,21 @@ class Login extends React.Component {
     })
   }
 
-  login = e => {
+  handleLogin = e => {
     e.preventDefault()
-    this.props.login(this.state.credentials).then(() => {
-      this.props.history.push("/protected")
-    })
+    this.props.loginAccess(this.state.credentials)
+    // this.props.login(this.state.credentials).then(() => {
+    //   this.props.history.push("/protected")
+    // })
   }
 
   render() {
+    if(this.props.isloggedin){
+      this.props.history.push("/friendlist")
+    }
     return (
       <div>
-        <form onSubmit={this.login}>
+        <form onSubmit={this.handleLogin}>
           <input
             type="text"
             name="username"
@@ -66,12 +71,22 @@ class Login extends React.Component {
 // }
 
 //same as:
-const mapStateToProps = ({ loggingIn, error }) => ({
-  error,
-  loggingIn
+// const mapStateToProps = ({ loggingIn, error }) => ({
+//   error,
+//   loggingIn
+// })
+
+// export default connect(
+//   mapStateToProps,
+//   { login }
+// )(Login)
+
+const mapStateToProps = state =>({
+  isloggedin:state.loggingIn,
+  isfetching:state.isfetching
 })
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login)
+export default connect (
+mapStateToProps,
+{loginAccess}
+)(LoginPage)

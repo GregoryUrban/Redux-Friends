@@ -5,32 +5,33 @@ import { createStore, applyMiddleware, compose } from "redux"
 import { Provider } from "react-redux"
 import thunk from "redux-thunk"
 import logger from 'redux-logger';
-
-
 import reducer from './reducers'
+import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+// const composeEnhancers =
+//   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 
-    })
-    : compose;
+//     })
+//     : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk, logger)); // added from Swapi
+// const enhancer = composeEnhancers(applyMiddleware(thunk, logger)); // added from Swapi
 
-// const store = createStore(reducer, applyMiddleware(thunk)) // original
-const store = createStore(reducer,enhancer); // added from Swapi
+const store = createStore(reducer, applyMiddleware(thunk, logger)) // original
+// const store = createStore(reducer,enhancer); // added from Swapi
 
-window.reduxStore = store
-const rootElement = document.getElementById("root")
+// window.reduxStore = store
+// const rootElement = document.getElementById("root")
 ReactDOM.render(
+  <Router>
   <Provider store={store}>
     <App />
-  </Provider>,
-  rootElement
-)
+  </Provider>
+  </Router>,
+  // rootElement)
+  document.getElementById('root'));
 
 
 
