@@ -18,11 +18,11 @@ import {
   } from '../actions';
   
   const initialState = {
-    fetchingFriends: false,
-    friends: [],
+      friends: [],
+      isfetching:false,
+      error: null,
+      fetchingFriends: false,
     loggingIn: false,
-    isfetching:false,
-    error: null,
     updatingFriend: false,
     // errorStatusCode: null,//added
     deletingFriend: false,
@@ -33,7 +33,7 @@ import {
   const reducer = (state = initialState, action) => {
     switch (action.type) {
       case LOGIN_START: 
-            return {...state, error: '', errorStatusCode: null, fetchingData: false,loggingIn: true};
+            return {...state, error: '', errorStatusCode: null, isfetching: true,loggingIn: true};
       case LOGIN_SUCCESS: 
             return {...state,error: '',loggingIn: false};
     //   case FETCH_DATA_START:
@@ -44,30 +44,32 @@ import {
     //         return { ...state, updating: false, error: action.payload };
       case FETCH_DATA_START:
         return {
-          ...state,
-          error: '',
-          fetchingData: true,
-          errorStatusCode: null
+        ...state,
+        isfetching: true,
+        // friends: action.payload,
+        // error: '',
+        // fetchingData: true,
+        //   errorStatusCode: null
         };
       case FETCH_DATA_SUCCESS:
         return {
           ...state,
-          error: '',
-          errorStatusCode: null,
-          fetchingData: false,
+          isfetching:false,
           friends: action.payload
-            .filter(price => price.type === 'Gasoline - Regular')
-            .filter(
-              price =>
-                price.location === 'US' || price.location === 'State of Hawaii'
-            )
+              //   error: '',
+           //   errorStatusCode: null,
+             //   fetchingData: false,
+            // .filter(price => price.type === 'Gasoline - Regular')
+            // .filter(
+            //   price =>
+            //     price.location === 'US' || price.location === 'State of Hawaii'
+            // )
         };
       case FETCH_DATA_FAILURE:
         return {
           ...state,
-          fetchingData: false,
-          error: action.payload.data.error,
-          errorStatusCode: action.payload.status
+          isfetching:false,
+          error: action.payload,
         };
       default:
         return state;

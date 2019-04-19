@@ -10,19 +10,19 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
-// const composeEnhancers =
-//   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+const composeEnhancers =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 
-//     })
-//     : compose;
+    })
+    : compose;
 
-// const enhancer = composeEnhancers(applyMiddleware(thunk, logger)); // added from Swapi
+const enhancer = composeEnhancers(applyMiddleware(thunk, logger)); // added from Swapi
 
-const store = createStore(reducer, applyMiddleware(thunk, logger)) // original
-// const store = createStore(reducer,enhancer); // added from Swapi
+// const store = createStore(reducer, applyMiddleware(thunk, logger)) // original
+const store = createStore(reducer,enhancer); // added from Swapi
 
-// window.reduxStore = store
+window.reduxStore = store
 // const rootElement = document.getElementById("root")
 ReactDOM.render(
   <Router>

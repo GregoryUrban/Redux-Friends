@@ -11,12 +11,12 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAILURE = "LOGIN_FAILURE"
 
 export const loginAccess = creds => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS })
-  return axios
-    .post("http://localhost:5000/api/login", creds)
+  dispatch({ type: LOGIN_START })
+  axios
+    .post("http://localhost:5000/login", creds)
     .then(res => {
-      localStorage.setItem("token", res.data.payload)
-      dispatch({ type: LOGIN_START, payload: res.data.payload })
+      // localStorage.setItem("token", res.data.payload)
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload })
     })
     // .catch(err => console.log(err))
     .catch(err =>{
@@ -34,7 +34,7 @@ export const getData = () => dispatch => {
   dispatch({ type: FETCH_DATA_START })
   // axiosWithAuth()
   axios
-    .get("http://localhost:5000/api/friends", {
+    .get("http://localhost:5000/friends", {
       headers: { Authorization: localStorage.getItem("token") } //added
     })
     .then(res => {
